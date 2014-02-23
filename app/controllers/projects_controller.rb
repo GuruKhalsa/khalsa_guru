@@ -22,4 +22,10 @@ class ProjectsController < ApplicationController
 	def destroy
 	end
 
+	private
+
+	def project_params
+		params.require(:project).permit(:name, :description, :user_id, :image)
+	end
+
 end
