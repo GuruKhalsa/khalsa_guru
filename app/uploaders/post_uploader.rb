@@ -30,7 +30,7 @@ class PostUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
-  process :resize_to_fill => [600, 400, gravity = 'Center']
+  process :resize_to_fill => [600, 350, gravity = 'Center']
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process :scale => [50, 50]
