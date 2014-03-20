@@ -1,21 +1,26 @@
 @import "bootstrap";
 
 
-.container {
-	margin-top: 75px;
+textarea, select, .uneditable-input {
+border: 1px solid #bbb;
+width: 100%;
+padding: 10px;
+height: auto;
+margin-bottom: 15px;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
 }
 
 
 /* universal */
-
-
 
 html {
 	overflow-y: scroll;
 }
 
 body {
-	padding-top: 60px;
+	padding-top: 10px;
 }
 
 section {
@@ -38,11 +43,20 @@ img {
 	vertical-align: 0;
 }
 
+a {
+	color: #085646;
+}
+
 a:hover, a:focus {
 	text-decoration: none;
+	color: #0c6f5a;
 }
 
 /* Navbar */
+
+.nav{
+	z-index: -999999
+}
 
 .nav > li > a {
 	padding: 0px 15px;
@@ -66,4 +80,213 @@ a:hover, a:focus {
 
 .navbar-right{
 	padding-right: 15px;
+}
+
+
+
+/* Post */
+
+#post_content {
+	height: 300px;
+}
+
+.content-body{
+	margin-top: 100px;
+}
+
+.new-post{
+	margin-top:40px;
+}
+
+/* Home */
+
+h1 {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 6em;
+    line-height: 1em;
+}
+
+.inset-text {
+    color: #085646;
+    /* Shadows are visible under slightly transparent text color */
+    /*
+    color: rgba(239,239,239, .9);
+    text-shadow: 1px 4px 6px #fff, 0 0 0 #8a8a8a, 1px 4px 6px #fff;
+    -webkit-text-shadow: 1px 4px 6px #fff, 0 0 0 #8a8a8a, 1px 4px 6px #fff;
+    -moz-text-shadow: 1px 4px 6px #fff, 0 0 0 #000, 1px 4px 6px #fff;
+    -o-text-shadow: 1px 4px 6px #fff, 0 0 0 #000, 1px 4px 6px #fff;
+    */
+}
+
+.mom-node{
+	height: 50px;
+	-moz-border-radius:64px; 
+    -webkit-border-radius: 64px;
+    border-radius: 64px;
+}
+
+
+
+.hexagon {
+    overflow: hidden;
+    visibility: hidden;
+    -webkit-transform: rotate(120deg);
+       -moz-transform: rotate(120deg);
+         -o-transform: rotate(120deg);
+            transform: rotate(120deg);
+    cursor: pointer;
+   
+
+    }
+.hexagon-in1 {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: rotate(-60deg);
+       -moz-transform: rotate(-60deg);
+         -o-transform: rotate(-60deg);
+            transform: rotate(-60deg);
+
+  
+
+    }
+.hexagon-in2 {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-image: url('mom.jpg');
+    visibility: visible;
+    -webkit-transform: rotate(-60deg);
+       -moz-transform: rotate(-60deg);
+         -o-transform: rotate(-60deg);
+            transform: rotate(-60deg);
+    border: 7px solid #085646;
+            
+    }
+
+.hexagon1 {
+	position: absolute;
+	top: 100px;
+    width: 70px;
+    height: 100px;
+    margin: -80px 0 0 20px;
+    z-index: 9999999;
+    
+    }
+
+ .hexagon2 {
+	position: absolute;
+	top: 180px;
+	left: 170px;
+    width: 70px;
+    height: 100px;
+    margin: -80px 0 0 20px;
+    z-index: 9999999;
+   
+    }
+
+ .hexagon3 {
+	position: absolute;
+	top: 140px;
+	left: 340px;
+    width: 70px;
+    height: 100px;
+    margin: -80px 0 0 20px;
+    z-index: 9999999;
+   
+    }
+
+.hexagon-in3 {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-image: url('triumpic.png');
+    visibility: visible;
+    -webkit-transform: rotate(-60deg);
+       -moz-transform: rotate(-60deg);
+         -o-transform: rotate(-60deg);
+            transform: rotate(-60deg);
+    border: 7px solid #085646;
+    }
+
+.hexagon-in4 {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-image: url('video_chat.jpg');
+    visibility: visible;
+    -webkit-transform: rotate(-60deg);
+       -moz-transform: rotate(-60deg);
+         -o-transform: rotate(-60deg);
+            transform: rotate(-60deg);
+    border: 7px solid #085646;
+    }
+
+.hexagon a{
+	display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.line1{
+	position: absolute;
+	top: 66px;
+	left: 100px;
+    height: 2px;
+    width: 130px;
+    background: #085646;
+    -webkit-transform-origin: 0% 0%;
+    	-moz-transform-origin: 0% 0%;
+    	-o-transform-origin: 0% 0%;
+    	transform-origin: 0% 0%;
+    -webkit-transform: rotate(43deg);
+    	-moz-transform: rotate(43deg);
+        -o-transform: rotate(43deg);
+        transform: rotate(43deg);
+}
+
+.line2{
+	position: absolute;
+	top: 153px;
+	left: 255px;
+    height: 2px;
+    width: 120px;
+    background: #085646;
+    -webkit-transform-origin: 0% 0%;
+    	-moz-transform-origin: 0% 0%;
+    	-o-transform-origin: 0% 0%;
+    	transform-origin: 0% 0%;
+    -webkit-transform: rotate(-23deg);
+    	-moz-transform: rotate(-23deg);
+        -o-transform: rotate(-23deg);
+        transform: rotate(-23deg);
+}
+
+.home-posts {
+	margin-top: 300px;
+}
+
+.home-post {
+	margin-bottom: 180px;
+}
+
+.center-image {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    -moz-border-radius: 10px; 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+
+}
+
+.title-date {
+	position: absolute;
+	right: 15px;
+	padding-top: 7px;
+	font-size: .6em;
 }

@@ -1,0 +1,13 @@
+<div class="content-body">
+	<div class="row">
+	  <div class="col-md-8 col-md-offset-2">
+	  	<%= image_tag(@post.image.url, class: "center-image") %>
+	  	<h3 class="center"><%= @post.title %><span class="title-date"><%= @post.created_at.to_date.strftime("%B %d, %Y")%></span></h3>
+		<%= simple_format(@post.content) %>
+		<% if current_user %>
+							
+			<%=link_to "edit", edit_post_path(@post.id), :class => "post-top-right pull-right"%><br/>
+			<%=link_to "delete", post_path(@post.id), :method => :delete, :class => "post-top-right pull-right", :confirm => "Are you sure you want to delete this message?"%>
+
+		<% end %>
+</div>
