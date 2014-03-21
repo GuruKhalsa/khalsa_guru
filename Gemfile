@@ -4,7 +4,6 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'mysql2'
-gem 'bootstrap-wysihtml5-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
