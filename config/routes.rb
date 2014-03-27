@@ -21,7 +21,7 @@ KhalsaGuru::Application.routes.draw do
       resources :sessions
 
 
-  get 'signup',  to: 'users#new', as: 'signup'
+  # get 'signup',  to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   # Example resource route with options:
