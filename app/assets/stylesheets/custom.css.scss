@@ -82,6 +82,27 @@ a:hover, a:focus {
 	padding-right: 15px;
 }
 
+.navbar-collapse.collapse {
+display: block!important;
+}
+
+.navbar-nav>li, .navbar-nav {
+float: right !important;
+}
+
+.navbar-nav.navbar-right:last-child {
+margin-right: -15px !important;
+}
+
+.navbar-right {
+float: right!important;
+}
+
+.about-me-navbar-link{
+    float:right;
+    margin-top: 20px;
+    margin-right: 20px;
+}
 
 
 /* Post */
@@ -117,6 +138,16 @@ h1 {
     -moz-text-shadow: 1px 4px 6px #fff, 0 0 0 #000, 1px 4px 6px #fff;
     -o-text-shadow: 1px 4px 6px #fff, 0 0 0 #000, 1px 4px 6px #fff;
     */
+}
+
+.projects-container{
+    height: 250px;
+}
+
+.clearer{
+    position: relative;
+    display: block;
+    clear: both;
 }
 
 .mom-node{
@@ -267,7 +298,7 @@ h1 {
 }
 
 .home-posts {
-	margin-top: 300px;
+	margin-top: 0px;
 }
 
 .home-post {
@@ -290,3 +321,13 @@ h1 {
 	padding-top: 7px;
 	font-size: .6em;
 }
+
+
+/* About Me */
+
+.profile {
+    margin-top: 50px;
+    height: 300px;
+    width: 200px;
+}
+
