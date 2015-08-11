@@ -1,3 +1,42 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.spirit-voyage-container{
+	h1, div{
+		font-family: 'Nixie One', arial !important;
+		font-weight: 100;
+	}
+
+	div{
+		font-size: 20px;
+	}
+}
+
+#battleship{
+	background-color: white;
+	border: none;
+	-webkit-transform: rotate(-10deg);
+  -moz-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+	transition-duration: 2.0s;
+	transition-property: transform;
+  -ms-transform-origin: 40% 80%; /* IE 9 */
+  -moz-transform-origin: 40% 80%;
+  -webkit-transform-origin: 40% 80%; /* Chrome, Safari, Opera */
+  transform-origin: 40% 80%;
+  
+}
+
+#opal-project-list{
+	text-align: center;
+	font-size: 20px;
+}
+
+#battleship-canvas{
+	display: block;
+	margin: auto;
+	height: 300px;
+	width: 700px;
+}

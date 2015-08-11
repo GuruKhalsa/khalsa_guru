@@ -1,5 +1,7 @@
 KhalsaGuru::Application.routes.draw do
 
+  resources :calagators
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -26,6 +28,9 @@ KhalsaGuru::Application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   get 'about', to: 'static_pages#about'
+  get 'spirit-voyage', to: 'static_pages#spirit_voyage'
+  get 'opal', to: 'static_pages#opal'
+  get 'battleship', to: 'static_pages#battleship'
   # Example resource route with options:
   #   resources :products do
   #     member do

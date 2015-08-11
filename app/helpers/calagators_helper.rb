@@ -1,0 +1,2 @@
+module CalagatorsHelper
+end
