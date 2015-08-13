@@ -101,7 +101,7 @@ $ ->
 	changeLine(195, "\\                    /", "\\   work in action   /")
 	
 	setTimeout ->
-		$('#battleship').after("<ul id='opal-project-list' class='list-unstyled'><li><a href='http://www.embrence.com'>Embrence</a></li><li><a href='http://www.triumpic.com'>Triumpic</a></li>")
+		$('#battleship').after("<ul id='opal-project-list' class='list-unstyled'><li><a href='http://www.embrence.com' target='_blank'>Embrence</a></li><li><a href='http://www.triumpic.com' target='_blank'>Triumpic</a></li>")
 	, 100 * (width_modifier + 195)
 
 

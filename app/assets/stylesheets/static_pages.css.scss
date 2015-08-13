@@ -36,7 +36,13 @@
 
 #battleship-canvas{
 	display: block;
+	background-color: #3087e8;
 	margin: auto;
-	height: 300px;
-	width: 700px;
+	margin-top: 80px;
+	/*
+	height: 400px;
+	width: 500px;
+	*/
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
 }

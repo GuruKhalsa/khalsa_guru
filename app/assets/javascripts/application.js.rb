@@ -1,0 +1,11 @@
+#= require opal
+#= require opal_ujs
+#= require jquery
+#= require jquery_ujs
+#= require turbolinks
+#= require calagators
+#= require posts
+#= require projects
+#= require sessions
+#= require static_pages
+#= require users
