@@ -24,29 +24,29 @@ $ ->
 		, 100 * n
 
 	 $('#battleship').css(
-    						 '-webkit-transform' : "rotate(-5deg)",
-                 '-moz-transform' : "rotate(-5deg)",
-                 '-ms-transform' : "rotate(-5deg)",
-                 'transform' : "rotate(-5deg)");
-                  ## @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+									'-webkit-transform' : "rotate(-5deg)",
+									'-moz-transform' : "rotate(-5deg)",
+									'-ms-transform' : "rotate(-5deg)",
+									'transform' : "rotate(-5deg)");
+									## @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 									## @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 									## @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } });
-  
-	setTimeout ->
-  	$('#battleship').css(
-    						 '-webkit-transform' : "rotate(10deg)",
-                 '-moz-transform' : "rotate(10deg)",
-                 '-ms-transform' : "rotate(10deg)",
-                 'transform' : "rotate(10deg)");
-  , 100 * (width_modifier/4)
 
-  setTimeout ->
-  	$('#battleship').css(
-    						 '-webkit-transform' : "rotate(0deg)",
-                 '-moz-transform' : "rotate(0deg)",
-                 '-ms-transform' : "rotate(0deg)",
-                 'transform' : "rotate(0deg)");
-  , 100 * (width_modifier/2)
+	setTimeout ->
+		$('#battleship').css(
+									'-webkit-transform' : "rotate(10deg)",
+									'-moz-transform' : "rotate(10deg)",
+									'-ms-transform' : "rotate(10deg)",
+									'transform' : "rotate(10deg)");
+	, 100 * (width_modifier/4)
+
+	setTimeout ->
+		$('#battleship').css(
+									'-webkit-transform' : "rotate(0deg)",
+									'-moz-transform' : "rotate(0deg)",
+									'-ms-transform' : "rotate(0deg)",
+									'transform' : "rotate(0deg)");
+	, 100 * (width_modifier/2)
 
 	changeLine(5, ' \\/   _', '/\\_/\\ _')
 
@@ -99,10 +99,25 @@ $ ->
 	changeLine(195, "\|   And he likes to    \|", "\|  his projects below  \|")
 	changeLine(195, "\|   play ping pong     \|", "\|  to see more of his  \|")
 	changeLine(195, "\\                    /", "\\   work in action   /")
+
 	
+	
+	changeLine(220, "\|  Check out some of   \|", "\|  And try to beat me  \|")
+	changeLine(220, "\|  his projects below  \|", "\|     at a game of     \|")
+	changeLine(220, "\|  to see more of his  \|", "\|   HTML5 Battleship   \|")
+	changeLine(220, "\\   work in action   /", "\\     he created!    / _____")
+	changeLine(220, "_ =( °w° )=", "  =( °w° )=")
+	changeLine(220, "(_)==)   (", "     )   (")
+	changeLine(220, ">   /\\_/\\", ">   \\_Φ_/")
+
+
 	setTimeout ->
 		$('#battleship').after("<ul id='opal-project-list' class='list-unstyled'><li><a href='http://www.embrence.com' target='_blank'>Embrence</a></li><li><a href='http://www.triumpic.com' target='_blank'>Triumpic</a></li>")
 	, 100 * (width_modifier + 195)
+
+	setTimeout ->
+		$('#battleship').after("<a href='/battleship?opal' target='_blank' class='opal-battleship-btn btn btn-default'>Play Battleship</a>")
+	, 100 * (width_modifier + 220)
 
 
 

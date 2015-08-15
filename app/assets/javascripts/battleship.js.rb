@@ -5,6 +5,29 @@
 
 Document.ready? do
 	require 'ostruct'
+
+	Element.class_eval do
+		def prepend(child_element_type, message)
+			parent_id = self.id
+			if Element.find("\##{parent_id}").children.length < 1
+				Element.find("\##{parent_id}").append("<#{child_element_type}>#{message}</#{child_element_type}>")
+			else
+				parent = `document.getElementById(#{parent_id})`
+				child = `document.createElement(#{child_element_type})`
+				`#{child}.appendChild(document.createTextNode(#{message}))`
+				`#{parent}.insertBefore(#{child}, #{parent}.firstChild)`
+			end
+		end
+	end
+
+	class BattleshipLog
+		attr_accessor :log
+
+		def initialize(log_selector)
+			@log = Element.find(log_selector)
+		end
+	end
+
 	class GameBoard
 	  attr_reader :height, :width, :canvas, :context, :max_x, :max_y
 	  attr_accessor :board, :previous_guesses, :ships
@@ -14,9 +37,7 @@ Document.ready? do
 	 
 	  def initialize
 	    @height  = 350                  
-	    @width   = 400
-	    @canvas  = `document.getElementById(#{canvas_id})` 
-    	@context = `#{canvas}.getContext('2d')`
+	    @width   = 400	 		
 	    @max_x   = (height / CELL_HEIGHT).floor           
 	    @max_y   = (width / CELL_WIDTH).floor
 	    @letter_lookup = {'A' => 0, 'B' => 1, 'C' => 2, 'D' => 3, 'E' => 4, 'F' => 5, 'G' => 6, 'H' => 7, 'I' => 8, 'J' => 9}
@@ -70,6 +91,15 @@ Document.ready? do
 			end
 
 			placement_values.include?('@') ? false : true
+		end
+
+		def create_canvas
+			el = Element.new(:canvas)
+			el.id = canvas_id
+			`#{el}.prependTo( "#battleship-map-container" )`
+			@canvas = `document.getElementById(#{canvas_id})`
+			`#{canvas}.className = 'battleship-canvas'`
+			@context = `#{canvas}.getContext('2d')`
 		end
 	 
 	  def draw_canvas
@@ -126,10 +156,10 @@ Document.ready? do
 	    Coordinates.new(x: x, y: y)
 	  end
 
-	  def fill_cell(x, y)
+	  def fill_cell(x, y, color)
 		  x *= CELL_WIDTH;
 		  y *= CELL_HEIGHT;
-		  `#{context}.fillStyle = "#000"`
+		  `#{context}.fillStyle = #{color}`
 		  `#{context}.fillRect(#{x.floor+1}, #{y.floor+1}, #{CELL_WIDTH-1}, #{CELL_HEIGHT-1})`
 		end
 		 
@@ -140,10 +170,11 @@ Document.ready? do
 		end
 
 		def add_mouse_event_listener
+			# .prop('onclick',null).off('click');
 		  Element.find("##{canvas_id}").on :click do |event|
 		    coords = get_cursor_position(event)
 		    x, y   = coords.x, coords.y
-		    fill_cell(x, y)
+		    fill_cell(x, y, '#000')
 		  end
 		 
 		  Element.find("##{canvas_id}").on :dblclick do |event|
@@ -174,52 +205,128 @@ Document.ready? do
 			super
 		end
 
+		def canvas_id
+	    'player-battleship-canvas'
+	  end
+
+		# def place_ship(ship)
+		# 	valid_placement = false
+		# 	until valid_placement
+		# 		puts "Please enter the coordinates (ex. E9) where you'd like to place your #{ship.name} (length: #{ship.length})"
+		# 		origin = gets.chomp.upcase
+
+		# 		puts "Which direction would you like your #{ship.name} (length: #{ship.length}) to face (N,S,E,W)?"
+		# 		cardinal_direction = gets.chomp.upcase
+
+		# 		origin_row = @letter_lookup[origin[0]].to_i
+		# 		origin_column = origin[1].to_i
+				
+		# 		if placement_valid?(ship, origin, cardinal_direction)
+		# 			valid_placement = true
+		# 		else
+		# 			puts 'Invalid placement, please select a new location'
+		# 		end
+		# 	end
+		# 	direction = cardinal_direction.match(/^[SE]$/) ? '+' : '-'
+		# 	ship.length.times do |distance|
+		# 		if cardinal_direction.match(/^[NS]$/)
+		# 			row = origin_row.method(direction).(distance)
+		# 			col = origin_column
+		# 			@board[row][col] = '@'
+		# 			ship.coordinates << [row, col]
+		# 		else
+		# 			row = origin_row
+		# 			col = origin_column.method(direction).(distance)
+		# 			@board[row][col] = '@'	
+		# 			ship.coordinates << [row, col]
+		# 		end
+		# 	end
+		# end
+
+		# def place_ships
+		# 	ships = [['destroyer', 2],['submarine', 3],['frigate', 3],['battleship', 4],['aircraft_carrier', 5]]
+		# 	ships.each do |ship|
+		# 		@ships += Ship.new(ship[0], ship[1])
+		# 	end
+
+		# 	@ships.each do |ship|
+		# 		display
+		# 		place_ship
+		# 	end
+
+		# 	display
+		# end
+
 		def place_ship(ship)
 			valid_placement = false
 			until valid_placement
-				puts "Please enter the coordinates (ex. E9) where you'd like to place your #{ship.name} (length: #{ship.length})"
-				origin = gets.chomp.upcase
-
-				puts "Which direction would you like your #{ship.name} (length: #{ship.length}) to face (N,S,E,W)?"
-				cardinal_direction = gets.chomp.upcase
+				origin = "#{@letter_lookup.key(rand(0..9))}#{rand(0..9)}"
+				cardinal_directions = ['N','S','E','W']
+				cardinal_direction = cardinal_directions[rand(0..3)]
 
 				origin_row = @letter_lookup[origin[0]].to_i
 				origin_column = origin[1].to_i
 				
 				if placement_valid?(ship, origin, cardinal_direction)
 					valid_placement = true
-				else
-					puts 'Invalid placement, please select a new location'
 				end
 			end
 			direction = cardinal_direction.match(/^[SE]$/) ? '+' : '-'
 			ship.length.times do |distance|
 				if cardinal_direction.match(/^[NS]$/)
-					row = origin_row.method(direction).(distance)
-					col = origin_column
-					@board[row][col] = '@'
-					ship.coordinates << [row, col]
+					@board[origin_row.method(direction).(distance)][origin_column] = '@'
+					fill_cell(origin_column, (origin_row.method(direction).(distance)), '#636363')
+					ship.coordinates << [origin_row.method(direction).(distance), origin_column]
 				else
-					row = origin_row
-					col = origin_column.method(direction).(distance)
-					@board[row][col] = '@'	
-					ship.coordinates << [row, col]
+					@board[origin_row][origin_column.method(direction).(distance)] = '@'
+					fill_cell((origin_column.method(direction).(distance)), origin_row, '#636363')
+					ship.coordinates << [origin_row, origin_column.method(direction).(distance)]
 				end
 			end
 		end
 
-		def place_ships
-			ships = [['destroyer', 2],['submarine', 3],['frigate', 3],['battleship', 4],['aircraft_carrier', 5]]
-			ships.each do |ship|
-				@ships += Ship.new(ship[0], ship[1])
-			end
+		def place_ships(log)
+			destroyer = Ship.new('destroyer', 2)
+			submarine = Ship.new('submarine', 3)
+			frigate = Ship.new('frigate', 3)
+			battleship = Ship.new('battleship', 4)
+			aircraft_carrier = Ship.new('aircraft carrier', 5)
+			@ships += [destroyer, submarine, frigate, battleship, aircraft_carrier]
 
-			@ships.each do |ship|
-				display
-				place_ship
-			end
+			# gameboard.display
+			place_ship(aircraft_carrier)
+			# gameboard.display
+			place_ship(battleship)
+			# gameboard.display
+			place_ship(frigate)
+			# gameboard.display
+			place_ship(submarine)
+			# gameboard.display
+			place_ship(destroyer)
+			# gameboard.display
+			# Element.find('#battleship-log').append('<h3>User placement complete</h3>')
 
-			display
+			# puts battleship_log = `document.getElementById('battleship-log')`
+			# puts log_entry = `document.createElement("h3")`
+			# puts `#{log_entry}.appendChild(document.createTextNode("Testing 1 2"))`
+			# `#{battleship_log}.insertBefore(#{log_entry}, #{battleship_log}.firstChild)`
+			
+			# def prepend(parent_id, child_element_type, message)
+			# 	if Element.find("\##{parent_id}").children.length < 1
+			# 		Element.find("\##{parent_id}").append("<#{child_element_type}>#{message}</#{child_element_type}>")
+			# 	else
+			# 		parent = `document.getElementById(#{parent_id})`
+			# 		child = `document.createElement(#{child_element_type})`
+			# 		`#{child}.appendChild(document.createTextNode(#{message}))`
+			# 		`#{parent}.insertBefore(#{child}, #{parent}.firstChild)`
+			# 	end
+			# end
+
+			log.prepend('h4', 'Your ships have been placed automatically')
+			
+
+			
+
 		end
 
 
@@ -246,7 +353,7 @@ Document.ready? do
 			end
 		end
 
-		def attacked(gameboard)
+		def attacked(gameboard, computer, computer_display, log)
 			valid_guess = false
 			until valid_guess
 				if !gameboard.board.flatten.include?('X')
@@ -261,19 +368,31 @@ Document.ready? do
 					# 	puts 'Already Guessed, try again.'
 					# 	next
 					if @board[row_index][col_index] == '@'
-						puts 'HIT!'
 						@board[row_index][col_index] = 'X'
 						gameboard.board[row_index][col_index] = 'X'
+						fill_cell(col_index, row_index, '#df7020')
 						@ships.each do |ship|
 							if ship.coordinates.include?([row_index, col_index])
 								ship.hits += 1
 							end
 							if ship.hits == ship.length
-								p "Your #{ship.name} was sunk"
+								log.prepend('h4', "Your #{ship.name} was sunk")
 								ship.sunk = true
 								ship.coordinates.each do |coords|
-									@board[coords[0]][coords[1]] = 'X'
-									gameboard.board[coords[0]][coords[1]] = 'X'
+									@board[coords[0]][coords[1]] = 'x'
+									gameboard.board[coords[0]][coords[1]] = 'x'
+									fill_cell(coords[1], coords[0], 'red')
+								end
+								if @ships.all?{|ship| ship.sunk}
+									Element.find('#battleship-log').hide
+									Element.find('#battleship-map-container').hide
+									container = Element.find('#battleship-container')
+									lose_header = Element.new(:h1)
+									lose_header.class_name = 'battleship-complete-header'
+									lose_header.text = "You Lose"
+									lose_header.append_to(container)
+									# Element.find('#battleship-container').after('<h1>You Lose</h1>')
+									Element.find('.try-again-link').show
 								end
 							end
 						end
@@ -281,9 +400,9 @@ Document.ready? do
 						@previous_guesses << [coordinates, true]
 						valid_guess = true
 					elsif @board[row_index][col_index] == ' '
-						puts 'Miss'
 						@board[row_index][col_index] = '~'
 						gameboard.board[row_index][col_index] = '~'
+						fill_cell(col_index, row_index, '#20dfdd')
 						@previous_guesses << [coordinates, false]
 						valid_guess = true
 					end
@@ -361,16 +480,28 @@ Document.ready? do
 						if @board[row_index - 1][col_index] == '@'
 							@board[row_index - 1][col_index] = 'X'
 							gameboard.board[row_index - 1][col_index] = 'X'
+							fill_cell(col_index, row_index - 1, '#df7020')
 							@ships.each do |ship|
 								if ship.coordinates.include?([row_index - 1, col_index])
 									ship.hits += 1
 								end
 								if ship.hits == ship.length
-									p "Your #{ship.name} was sunk"
+									log.prepend('h4', "Your #{ship.name} was sunk")
 									ship.sunk = true
 									ship.coordinates.each do |coords|
-										@board[coords[0]][coords[1]] = 'X'
-										gameboard.board[coords[0]][coords[1]] = 'X'
+										@board[coords[0]][coords[1]] = 'x'
+										gameboard.board[coords[0]][coords[1]] = 'x'
+										fill_cell(coords[1], coords[0], 'red')
+									end
+									if @ships.all?{|ship| ship.sunk}
+										Element.find('#battleship-log').hide
+										Element.find('#battleship-map-container').hide
+										container = Element.find('#battleship-container')
+										lose_header = Element.new(:h1)
+										lose_header.class_name = 'battleship-complete-header'
+										lose_header.text = "You Lose"
+										lose_header.append_to(container)
+										Element.find('.try-again-link').show
 									end
 								end
 							end
@@ -378,6 +509,7 @@ Document.ready? do
 						else
 							@board[row_index - 1][col_index] = '~'
 							gameboard.board[row_index - 1][col_index] = '~'
+							fill_cell(col_index, row_index - 1, '#20dfdd')
 						end
 						@previous_guesses << ["#{@letter_lookup.key(row_index-1)}#{col_index}", true]
 						valid_guess = true
@@ -386,16 +518,28 @@ Document.ready? do
 						if @board[row_index + 1][col_index] == '@'
 							@board[row_index + 1][col_index] = 'X'
 							gameboard.board[row_index + 1][col_index] = 'X'
+							fill_cell(col_index, row_index + 1, '#df7020')
 							@ships.each do |ship|
 								if ship.coordinates.include?([row_index + 1, col_index])
 									ship.hits += 1
 								end
 								if ship.hits == ship.length
-									p "Your #{ship.name} was sunk"
+									log.prepend('h4', "Your #{ship.name} was sunk")
 									ship.sunk = true
 									ship.coordinates.each do |coords|
-										@board[coords[0]][coords[1]] = 'X'
-										gameboard.board[coords[0]][coords[1]] = 'X'
+										@board[coords[0]][coords[1]] = 'x'
+										gameboard.board[coords[0]][coords[1]] = 'x'
+										fill_cell(coords[1], coords[0], 'red')
+									end
+									if @ships.all?{|ship| ship.sunk}
+										Element.find('#battleship-log').hide
+										Element.find('#battleship-map-container').hide
+										container = Element.find('#battleship-container')
+										lose_header = Element.new(:h1)
+										lose_header.class_name = 'battleship-complete-header'
+										lose_header.text = "You Lose"
+										lose_header.append_to(container)
+										Element.find('.try-again-link').show
 									end
 								end
 							end
@@ -403,6 +547,7 @@ Document.ready? do
 						else
 							@board[row_index + 1][col_index] = '~'
 							gameboard.board[row_index + 1][col_index] = '~'
+							fill_cell(col_index, row_index + 1, '#20dfdd')
 						end
 						@previous_guesses << ["#{@letter_lookup.key(row_index-1)}#{col_index}", true]
 						valid_guess = true
@@ -411,16 +556,28 @@ Document.ready? do
 						if @board[row_index][col_index + 1] == '@'
 							@board[row_index][col_index + 1] = 'X'
 							gameboard.board[row_index][col_index + 1] = 'X'
+							fill_cell(col_index + 1, row_index, '#df7020')
 							@ships.each do |ship|
 								if ship.coordinates.include?([row_index, col_index + 1])
 									ship.hits += 1
 								end
 								if ship.hits == ship.length
-									p "Your #{ship.name} was sunk"
+									log.prepend('h4', "Your #{ship.name} was sunk")
 									ship.sunk = true
 									ship.coordinates.each do |coords|
-										@board[coords[0]][coords[1]] = 'X'
-										gameboard.board[coords[0]][coords[1]] = 'X'
+										@board[coords[0]][coords[1]] = 'x'
+										gameboard.board[coords[0]][coords[1]] = 'x'
+										fill_cell(coords[1], coords[0], 'red')
+									end
+									if @ships.all?{|ship| ship.sunk}
+										Element.find('#battleship-log').hide
+										Element.find('#battleship-map-container').hide
+										container = Element.find('#battleship-container')
+										lose_header = Element.new(:h1)
+										lose_header.class_name = 'battleship-complete-header'
+										lose_header.text = "You Lose"
+										lose_header.append_to(container)
+										Element.find('.try-again-link').show
 									end
 								end
 							end
@@ -428,6 +585,7 @@ Document.ready? do
 						else
 							@board[row_index][col_index + 1] = '~'
 							gameboard.board[row_index][col_index + 1] = '~'
+							fill_cell(col_index + 1, row_index, '#20dfdd')
 						end
 						@previous_guesses << ["#{@letter_lookup.key(row_index)}#{col_index+1}", true]
 						valid_guess = true
@@ -436,16 +594,28 @@ Document.ready? do
 						if @board[row_index][col_index - 1] == '@'
 							@board[row_index ][col_index - 1] = 'X'
 							gameboard.board[row_index][col_index - 1] = 'X'
+							fill_cell(col_index - 1, row_index, '#df7020')
 							@ships.each do |ship|
 								if ship.coordinates.include?([row_index, col_index - 1])
 									ship.hits += 1
 								end
 								if ship.hits == ship.length
-									p "Your #{ship.name} was sunk"
+									log.prepend('h4', "Your #{ship.name} was sunk")
 									ship.sunk = true
 									ship.coordinates.each do |coords|
-										@board[coords[0]][coords[1]] = 'X'
-										gameboard.board[coords[0]][coords[1]] = 'X'
+										@board[coords[0]][coords[1]] = 'x'
+										gameboard.board[coords[0]][coords[1]] = 'x'
+										fill_cell(coords[1], coords[0], 'red')
+									end
+									if @ships.all?{|ship| ship.sunk}
+										Element.find('#battleship-log').hide
+										Element.find('#battleship-map-container').hide
+										container = Element.find('#battleship-container')
+										lose_header = Element.new(:h1)
+										lose_header.class_name = 'battleship-complete-header'
+										lose_header.text = "You Lose"
+										lose_header.append_to(container)
+										Element.find('.try-again-link').show
 									end
 								end
 							end
@@ -453,6 +623,7 @@ Document.ready? do
 						else
 							@board[row_index][col_index - 1] = '~'
 							gameboard.board[row_index][col_index - 1] = '~'
+							fill_cell(col_index - 1, row_index, '#20dfdd')
 						end
 						@previous_guesses << ["#{@letter_lookup.key(row_index)}#{col_index-1}", true]
 						valid_guess = true
@@ -461,6 +632,7 @@ Document.ready? do
 					end
 				end
 			end
+			computer.attacked(computer_display, self, gameboard, log)
 		end
 	end
 
@@ -469,7 +641,11 @@ Document.ready? do
 			super
 		end
 
-		def place_ship(gameboard, ship)
+		def canvas_id
+	    'computer-battleship-canvas'
+	  end
+
+		def place_ship(ship)
 			valid_placement = false
 			until valid_placement
 				origin = "#{@letter_lookup.key(rand(0..9))}#{rand(0..9)}"
@@ -487,17 +663,15 @@ Document.ready? do
 			ship.length.times do |distance|
 				if cardinal_direction.match(/^[NS]$/)
 					@board[origin_row.method(direction).(distance)][origin_column] = '@'
-					gameboard.fill_cell(origin_column, (origin_row.method(direction).(distance)))
 					ship.coordinates << [origin_row.method(direction).(distance), origin_column]
 				else
 					@board[origin_row][origin_column.method(direction).(distance)] = '@'
-					gameboard.fill_cell((origin_column.method(direction).(distance)), origin_row)
 					ship.coordinates << [origin_row, origin_column.method(direction).(distance)]
 				end
 			end
 		end
 
-		def place_ships(gameboard)
+		def place_ships(log)
 			destroyer = Ship.new('destroyer', 2)
 			submarine = Ship.new('submarine', 3)
 			frigate = Ship.new('frigate', 3)
@@ -506,48 +680,62 @@ Document.ready? do
 			@ships += [destroyer, submarine, frigate, battleship, aircraft_carrier]
 
 			# gameboard.display
-			place_ship(gameboard, aircraft_carrier)
+			place_ship(aircraft_carrier)
 			# gameboard.display
-			place_ship(gameboard, battleship)
+			place_ship(battleship)
 			# gameboard.display
-			place_ship(gameboard, frigate)
+			place_ship(frigate)
 			# gameboard.display
-			place_ship(gameboard, submarine)
+			place_ship(submarine)
 			# gameboard.display
-			place_ship(gameboard, destroyer)
+			place_ship(destroyer)
 			# gameboard.display
-			puts "\nOpponent placement complete.\n"
+			log.prepend('h4', 'Opponent placement complete')
 		end
 
-		def attacked(gameboard)
+		def attacked(gameboard, player, player_display, log)
 			coordinates_valid = false
-			until coordinates_valid
-				puts "Please enter the coordinates of your next attack"
-				coordinates = gets.chomp.upcase
-				if !coordinates.match(/^[A-J][0-9]$/)
-					puts
-							puts 'INVALID COORDINATES, please select another attack location'
-							puts
-					next
-				end
-				row_index = @letter_lookup[coordinates[0..0]].to_i
-				col_index = coordinates[1..1].to_i
+			# until coordinates_valid
+			Element.find("##{canvas_id}").on :click do |event|
+				Element.find("##{canvas_id}").prop('onclick',nil).off('click')
+		    coordinates = gameboard.get_cursor_position(event)
+		    row_index, col_index   = coordinates.x, coordinates.y
 
 				if @board[row_index][col_index] == '@'
-					puts 'HIT!'
 					@board[row_index][col_index] = 'X'
 					gameboard.board[row_index][col_index] = 'X'
+					gameboard.fill_cell(row_index, col_index, '#df7020')
 					@ships.each do |ship|
 						if ship.coordinates.include?([row_index, col_index])
 							ship.hits += 1
 						end
 						if ship.hits == ship.length
-							p "Opponent's #{ship.name} was sunk"
+							log.prepend('h4', "Opponent's #{ship.name} was sunk")
 							ship.sunk = true
 							ship.coordinates.each do |coords|
 								@board[coords[0]][coords[1]] = 'X'
 								gameboard.board[coords[0]][coords[1]] = 'X'
+								gameboard.fill_cell(coords[0], coords[1], 'red')
 							end
+							
+							if @ships.all?{|ship| ship.sunk}
+								Element.find('#battleship-log').hide
+								Element.find('#battleship-map-container').hide
+								container = Element.find('#battleship-container')
+								win_header = Element.new(:h1)
+								win_header.class_name = 'battleship-complete-header'
+								win_header.text = "You Win"
+								win_header.append_to(container)
+								if `window.location.search.replace("?", "")`.include?('opal')
+									opal_header = Element.new(:p)
+									opal_header.text = 'Thank you so much for considering me for the Junior Front-end Engineer position at Opal!  Please give me a call (503-997-0227) or send me an email (gk@khalsa.guru) so I can demonstrate the creativity and work ethic I can bring to Opal.  Thank you again for your time and consideration'
+									opal_header.class_name = 'battleship-opal-header'
+									opal_header.append_to(container)
+								end
+								# Element.find('#battleship-container').after('<h1>You Lose</h1>')
+								Element.find('.try-again-link').show
+							end
+							log.prepend('h4', "You Win!") if @ships.all?{|ship| ship.sunk}
 						end
 					end
 					@ships.reject!{|ship| ship.sunk}
@@ -556,45 +744,54 @@ Document.ready? do
 					coordinates_valid = true
 
 				elsif @board[row_index][col_index] == ' '
-					puts 'Miss'
 					@board[row_index][col_index] = '~'
 					gameboard.board[row_index][col_index] = '~'
+					gameboard.fill_cell(row_index, col_index, '#20dfdd')
 					@previous_guesses << [coordinates, false]
 					coordinates_valid = true
 				else
-					puts 'Already Guessed'
+					# log.prepend('h4', "Already guessed.")
 				end
+				player.attacked(player_display, self, gameboard, log)
 			end
+			# end
 		end
 	end
 
-	 
-	grid = GameBoard.new
-	grid.draw_canvas
+ 
+	log = BattleshipLog.new('#battleship-log').log
+
 	# grid.fill_cell(9,5)
 	# grid.add_mouse_event_listener
 
-	# player = PlayerBoard.new
-	# player_display = GameBoard.new
-	# player.place_ships
+	player = PlayerBoard.new
+	player.create_canvas
+	player.draw_canvas
+	player.place_ships(log)
+
+	player_display = GameBoard.new
+
+	computer_display = ComputerBoard.new
+	computer_display.create_canvas
+	computer_display.draw_canvas
+
 	computer = ComputerBoard.new
-	# computer_display = GameBoard.new
-	computer.place_ships(grid)
-	p computer.board
-	# # while computer.board.flatten.include?('@'.black.on_white)
+	computer.place_ships(log)
+	
+
 	# until computer.ships.empty? || player.ships.empty?
-	# 	computer.attacked(computer_display)
-	# 	computer_display.display
-	# 	if computer.ships.empty?
-	# 		p 'You win!'
-	# 		break
-	# 	end
-	# 	player.attacked(player_display)
-	# 	player.display
-	# 	if player.ships.empty?
-	# 		p 'You lose!'
-	# 		break
-	# 	end
+		computer.attacked(computer_display, player, player_display, log)
+		# computer_display.display
+		# if computer.ships.empty?
+		# 	p 'You win!'
+		# 	break
+		# end
+		# player.attacked(player_display)
+		# player.display
+		# if player.ships.empty?
+		# 	p 'You lose!'
+		# 	break
+		# end
 	# end
 
 

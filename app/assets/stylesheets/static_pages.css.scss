@@ -14,6 +14,8 @@
 }
 
 #battleship{
+	position: relative;
+	z-index: -100;
 	background-color: white;
 	border: none;
 	-webkit-transform: rotate(-10deg);
@@ -34,15 +36,168 @@
 	font-size: 20px;
 }
 
+.opal-battleship-btn{
+	position: absolute;
+	top: 100px;
+	left: 30%;
+}
+
 #battleship-canvas{
 	display: block;
 	background-color: #3087e8;
 	margin: auto;
-	margin-top: 80px;
-	/*
-	height: 400px;
-	width: 500px;
-	*/
 	border-bottom: 1px solid black;
 	border-right: 1px solid black;
+}
+
+#computer-battleship-canvas{
+	border-bottom: 3px solid black;
+	/*
+	border-image-slice: 203 211 207 220;
+	border-image-width: 40px 40px 40px 40px;
+	border-image-outset: 20px 30px 30px 30px;
+	border-image-repeat: repeat repeat;
+	border-image-source: image-url('battleship_border.png');
+	*/
+}
+
+#battleship-map-container{
+	display: inline-block;
+	margin-top: 60px;
+	border-image-slice: 403 411 407 420;
+	border-image-width: 40px 40px 40px 40px;
+	border-image-outset: 35px 35px 35px 35px;
+	/*border-image-repeat: repeat repeat;*/
+	border-image-source: image-url('World_Map_1689.JPG');
+}
+
+.battleship-canvas{
+	display: block;
+	margin: auto;
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+	position: relative;
+	z-index: 9999999;
+	background: 
+	radial-gradient(circle at 100% 50%, transparent 20%, rgba(255,255,255,.3) 21%, rgba(255,255,255,.3) 34%, transparent 35%, transparent),
+	radial-gradient(circle at 0% 50%, transparent 20%, rgba(255,255,255,.3) 21%, rgba(255,255,255,.3) 34%, transparent 35%, transparent) 0 -50px;
+	background-color: #3087e8;
+	background-size:30px 30px;
+}
+
+#battleship-log{
+	margin-top: 30px;
+	float: right;
+	text-align: center;
+	padding: 10px;
+	border:1px dashed rgba(254, 254, 254, .6);border-right:1px dashed rgba(254, 254, 254, .6);
+	
+	background:
+	-webkit-linear-gradient(top, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
+	-webkit-linear-gradient(bottom, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
+	-webkit-linear-gradient(right, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
+	-webkit-linear-gradient(left, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
+	#f4f0ec;
+	
+	background:
+	linear-gradient(top, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
+	linear-gradient(bottom, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
+	linear-gradient(right, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
+	linear-gradient(left, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
+	#f4f0ec;
+
+	background:
+	-moz-linear-gradient(top, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
+	-moz-linear-gradient(bottom, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
+	-moz-linear-gradient(right, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
+	-moz-linear-gradient(left, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
+	#f4f0ec;
+
+	h4{
+		font-family: 'Tangerine', cursive;
+		font-size: 30px;
+	}
+}
+
+.battleship-complete-header{
+	margin-top: 120px;
+	font-family: 'Tangerine', cursive;
+}
+
+
+.battleship-opal-header{
+	font-family: 'Tangerine', cursive;
+	font-size: 30px;
+	width: 50%;
+	margin: auto;
+	margin-bottom: 30px;
+}
+
+#battleship-container{
+	width: 100%;
+	text-align: center;
+}
+
+.try-again-link{
+	font-size: 30px;
+	font-family: 'Tangerine', cursive;
+	position: relative;
+	z-index: 5;
+	display: none;
+	background: #ffffff;
+	&:hover{
+		background: #ffffff;
+	}
+}
+
+.try-again-button{
+	font-size: 30px;
+	font-family: 'Tangerine', cursive;
+	position: relative;
+	z-index: 5;
+	display: none;
+}
+
+#game-complete-container{
+	width: 100%;
+	text-align: center;
+}
+
+video.battleship-video{
+	opacity: .1;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -100;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	background: url(polina.jpg) no-repeat;
+	background-size: cover;
+}
+
+body {
+    
+}
+
+#c {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1000;
+}
+
+#v {
+		visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    margin: -180px 0 0 -240px;
 }

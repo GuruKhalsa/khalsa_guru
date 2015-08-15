@@ -1,2 +1,15 @@
-<canvas id	='battleship-canvas'></canvas>
-<%= javascript_include_tag 'battleship' %>
+<%# video_tag('battleship_short.mp4', autoplay: true, loop: true, muted: true, :class => 'battleship-video') %>
+<%# video_tag('battleship_history_short2.mp4', autoplay: true, loop: true, muted: true, :id => 'v') %>
+<!-- <canvas id=c></canvas> -->
+<link href='http://fonts.googleapis.com/css?family=Tangerine:700' rel='stylesheet' type='text/css'>
+<div id='battleship-container'>
+	<div id='battleship-map-container'>
+	</div>
+
+	<div id='battleship-log'>
+	</div>
+	<%= javascript_include_tag 'battleship' %>
+</div>
+<div id='game-complete-container'>
+	<%= link_to "Play Again", url_for(params), :class => 'btn btn-default try-again-link' %>
+</div>
