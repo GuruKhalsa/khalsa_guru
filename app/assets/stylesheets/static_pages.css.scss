@@ -52,13 +52,6 @@
 
 #computer-battleship-canvas{
 	border-bottom: 3px solid black;
-	/*
-	border-image-slice: 203 211 207 220;
-	border-image-width: 40px 40px 40px 40px;
-	border-image-outset: 20px 30px 30px 30px;
-	border-image-repeat: repeat repeat;
-	border-image-source: image-url('map_border.jpg');
-	*/
 }
 
 #battleship-map-container{
@@ -69,7 +62,7 @@
 	border-image-width: 40px 40px 40px 40px;
 	border-image-outset: 35px 35px 35px 35px;
 	/* border-image-repeat: repeat repeat; */
-	border-image-source: image-url('nautical_map_border.jpg');
+	border-image-source: image-url('nautical_map_border_gray.jpg');
 }
 
 .battleship-canvas{
@@ -94,25 +87,25 @@
 	border:1px dashed rgba(254, 254, 254, .6);border-right:1px dashed rgba(254, 254, 254, .6);
 	
 	background:
-	-webkit-linear-gradient(top, #dec9aa 0%, rgba(255,255,255, 0) 20px),
-	-webkit-linear-gradient(bottom, #dec9aa 0%, rgba(255,255,255, 0) 20px),
-	-webkit-linear-gradient(right, #dec9aa 0%, rgba(255,255,255, 0) 10%),
-	-webkit-linear-gradient(left, #dec9aa 0%, rgba(255,255,255, 0) 10%),
-	#f7e0bc;
+	-webkit-linear-gradient(top, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
+	-webkit-linear-gradient(bottom, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
+	-webkit-linear-gradient(right, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
+	-webkit-linear-gradient(left, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
+	#f4f0ec;
 	
 	background:
-	linear-gradient(top, #dec9aa 0%, rgba(255,255,255, 0) 20px),
-	linear-gradient(bottom, #dec9aa 0%, rgba(255,255,255, 0) 20px),
-	linear-gradient(right, #dec9aa 0%, rgba(255,255,255, 0) 10%),
-	linear-gradient(left, #dec9aa 0%, rgba(255,255,255, 0) 10%),
-	#f7e0bc;
+	linear-gradient(top, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
+	linear-gradient(bottom, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
+	linear-gradient(right, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
+	linear-gradient(left, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
+	#f4f0ec;
 
 	background:
-	-moz-linear-gradient(top, #dec9aa 0%, rgba(255,255,255, 0) 20px),
-	-moz-linear-gradient(bottom, #dec9aa 0%, rgba(255,255,255, 0) 20px),
-	-moz-linear-gradient(right, #dec9aa 0%, rgba(255,255,255, 0) 10%),
-	-moz-linear-gradient(left, #dec9aa 0%, rgba(255,255,255, 0) 10%),
-	#f7e0bc;
+	-moz-linear-gradient(top, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
+	-moz-linear-gradient(bottom, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
+	-moz-linear-gradient(right, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
+	-moz-linear-gradient(left, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
+	#f4f0ec;
 
 	h4{
 		font-family: 'Tangerine', cursive;
@@ -134,7 +127,12 @@
 	margin-bottom: 30px;
 }
 
+.battleship-background{
+	background-image: url("HMS_Hood.jpg");
+}
+
 #battleship-container{
+
 	width: 100%;
 	text-align: center;
 }
