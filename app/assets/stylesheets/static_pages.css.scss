@@ -57,18 +57,19 @@
 	border-image-width: 40px 40px 40px 40px;
 	border-image-outset: 20px 30px 30px 30px;
 	border-image-repeat: repeat repeat;
-	border-image-source: image-url('battleship_border.png');
+	border-image-source: image-url('map_border.jpg');
 	*/
 }
 
 #battleship-map-container{
 	display: inline-block;
 	margin-top: 60px;
-	border-image-slice: 403 411 407 420;
+	margin-bottom: 60px;
+	border-image-slice: 55 50 50 50;
 	border-image-width: 40px 40px 40px 40px;
 	border-image-outset: 35px 35px 35px 35px;
-	/*border-image-repeat: repeat repeat;*/
-	border-image-source: image-url('World_Map_1689.JPG');
+	/* border-image-repeat: repeat repeat; */
+	border-image-source: image-url('nautical_map_border.jpg');
 }
 
 .battleship-canvas{
@@ -86,32 +87,32 @@
 }
 
 #battleship-log{
-	margin-top: 30px;
+	margin-top: 60px;
 	float: right;
 	text-align: center;
 	padding: 10px;
 	border:1px dashed rgba(254, 254, 254, .6);border-right:1px dashed rgba(254, 254, 254, .6);
 	
 	background:
-	-webkit-linear-gradient(top, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
-	-webkit-linear-gradient(bottom, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
-	-webkit-linear-gradient(right, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
-	-webkit-linear-gradient(left, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
-	#f4f0ec;
+	-webkit-linear-gradient(top, #dec9aa 0%, rgba(255,255,255, 0) 20px),
+	-webkit-linear-gradient(bottom, #dec9aa 0%, rgba(255,255,255, 0) 20px),
+	-webkit-linear-gradient(right, #dec9aa 0%, rgba(255,255,255, 0) 10%),
+	-webkit-linear-gradient(left, #dec9aa 0%, rgba(255,255,255, 0) 10%),
+	#f7e0bc;
 	
 	background:
-	linear-gradient(top, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
-	linear-gradient(bottom, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
-	linear-gradient(right, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
-	linear-gradient(left, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
-	#f4f0ec;
+	linear-gradient(top, #dec9aa 0%, rgba(255,255,255, 0) 20px),
+	linear-gradient(bottom, #dec9aa 0%, rgba(255,255,255, 0) 20px),
+	linear-gradient(right, #dec9aa 0%, rgba(255,255,255, 0) 10%),
+	linear-gradient(left, #dec9aa 0%, rgba(255,255,255, 0) 10%),
+	#f7e0bc;
 
 	background:
-	-moz-linear-gradient(top, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
-	-moz-linear-gradient(bottom, #e2d6ca 0%, rgba(255,255,255, 0) 20px),
-	-moz-linear-gradient(right, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
-	-moz-linear-gradient(left, #e2d6ca 0%, rgba(255,255,255, 0) 10%),
-	#f4f0ec;
+	-moz-linear-gradient(top, #dec9aa 0%, rgba(255,255,255, 0) 20px),
+	-moz-linear-gradient(bottom, #dec9aa 0%, rgba(255,255,255, 0) 20px),
+	-moz-linear-gradient(right, #dec9aa 0%, rgba(255,255,255, 0) 10%),
+	-moz-linear-gradient(left, #dec9aa 0%, rgba(255,255,255, 0) 10%),
+	#f7e0bc;
 
 	h4{
 		font-family: 'Tangerine', cursive;

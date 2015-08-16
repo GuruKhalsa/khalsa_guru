@@ -104,11 +104,11 @@ $ ->
 	
 	changeLine(220, "\|  Check out some of   \|", "\|  And try to beat me  \|")
 	changeLine(220, "\|  his projects below  \|", "\|     at a game of     \|")
-	changeLine(220, "\|  to see more of his  \|", "\|   HTML5 Battleship   \|")
-	changeLine(220, "\\   work in action   /", "\\     he created!    / _____")
+	changeLine(220, "\|  to see more of his  \|", "\|   HTML5 Battleship   \|_____")
+	changeLine(220, "\\   work in action   /", "\\     he created!    _/   Φ \\_")
 	changeLine(220, "_ =( °w° )=", "  =( °w° )=")
 	changeLine(220, "(_)==)   (", "     )   (")
-	changeLine(220, ">   /\\_/\\", ">   \\_Φ_/")
+	changeLine(220, ">   /\\_/\\", "> ---------")
 
 
 	setTimeout ->

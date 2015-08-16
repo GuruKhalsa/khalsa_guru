@@ -734,6 +734,7 @@ Document.ready? do
 								end
 								# Element.find('#battleship-container').after('<h1>You Lose</h1>')
 								Element.find('.try-again-link').show
+								return
 							end
 							log.prepend('h4', "You Win!") if @ships.all?{|ship| ship.sunk}
 						end
