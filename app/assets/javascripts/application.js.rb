@@ -9,4 +9,5 @@
 #= require sessions
 #= require static_pages
 #= require users
-#= require battleship_video.js
+#= require battleship
+#= require battleship_video
