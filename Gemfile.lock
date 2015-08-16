@@ -72,6 +72,9 @@ GEM
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (2.1.0)
+      railties (>= 3.1.0)
+      turbolinks
     json (1.8.2)
     jwt (1.4.1)
     launchy (2.4.3)
@@ -180,6 +183,7 @@ DEPENDENCIES
   google-api-client
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-turbolinks
   mini_magick
   mysql2
   opal-rails

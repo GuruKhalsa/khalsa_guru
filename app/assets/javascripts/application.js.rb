@@ -1,6 +1,7 @@
 #= require opal
 #= require opal_ujs
 #= require jquery
+#= require jquery.turbolinks
 #= require jquery_ujs
 #= require turbolinks
 #= require calagators

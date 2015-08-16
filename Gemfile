@@ -6,6 +6,7 @@ gem 'mini_magick'
 gem 'mysql2'
 gem 'google-api-client'
 gem 'opal-rails'
+gem 'jquery-turbolinks'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
