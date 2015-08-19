@@ -731,6 +731,11 @@ Document.ready? do
 									opal_header.text = 'Thank you so much for considering me for the Junior Front-end Engineer position at Opal!  Please give me a call (503-997-0227) or send me an email (gk@khalsa.guru) so I can demonstrate the creativity and work ethic I can bring to Opal.  Thank you again for your time and consideration'
 									opal_header.class_name = 'battleship-opal-header'
 									opal_header.append_to(container)
+								elsif `window.location.search.replace("?", "")`.include?('fine')
+									opal_header = Element.new(:pre)
+									opal_header.text = " ______________________\n|                      |\n|    Guru wants to     |\n|   work with giants   |    _   _\n|                       \\  ((---))\n ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ =( °w° )=\n                        ( °))   (  //\n                           (__ __)//"
+									opal_header.class_name = 'battleship-win-fine'
+									opal_header.append_to(container)
 								end
 								# Element.find('#battleship-container').after('<h1>You Lose</h1>')
 								Element.find('.try-again-link').show

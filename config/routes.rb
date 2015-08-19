@@ -29,6 +29,7 @@ KhalsaGuru::Application.routes.draw do
 
   get 'about', to: 'static_pages#about'
   get 'spirit-voyage', to: 'static_pages#spirit_voyage'
+  get 'fine', to: 'static_pages#fine'
   get 'opal', to: 'static_pages#opal'
   get 'battleship', to: 'static_pages#battleship'
   # Example resource route with options:

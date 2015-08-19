@@ -8,7 +8,6 @@
 
 	<div id='battleship-log'>
 	</div>
-	<%# javascript_include_tag 'battleship' %>
 </div>
 <div id='game-complete-container'>
 	<%= link_to "Play Again", url_for(params), :class => 'btn btn-default try-again-link' %>
@@ -18,3 +17,5 @@
 		$('body').addClass('battleship-background');
 	});
 </script>
+
+<%= javascript_include_tag('battleship.js') %>

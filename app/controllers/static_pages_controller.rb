@@ -10,6 +10,9 @@ class StaticPagesController < ApplicationController
 	def spirit_voyage
 	end
 
+	def fine
+	end
+
 	def opal
 	end
 

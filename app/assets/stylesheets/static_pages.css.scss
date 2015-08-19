@@ -40,6 +40,28 @@
 	position: absolute;
 	top: 100px;
 	left: 30%;
+	-webkit-animation: glow 800ms ease-out infinite alternate;
+	-moz-animation: glow 800ms ease-out infinite alternate;
+	-o-animation: glow 800ms ease-out infinite alternate;
+	-ms-animation: glow 800ms ease-out infinite alternate;
+	animation: glow 800ms ease-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+    0% {
+		border-color: #393;
+		box-shadow: 0 0 5px rgba(219, 136, 15, .2);
+    }	
+    100% {
+		border-color: #6f6;
+		box-shadow: 0 0 20px rgba(219, 136, 15, .6);
+    }
+}
+
+.thin-window-error{
+	text-align: center;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin-top: 80px;
 }
 
 #battleship-canvas{
@@ -135,6 +157,17 @@
 
 	width: 100%;
 	text-align: center;
+}
+
+.battleship-win-fine{
+	text-align: left;
+	width: 311px;
+	margin: auto;
+	margin-bottom: 20px;
+	background: linear-gradient(48deg, #eceac4 1%, #fee5ad);
+	background: -webkit-linear-gradient(48deg, #eceac4 1%, #fee5ad);
+	background: -moz-linear-gradient(48deg, #eceac4 1%, #fee5ad);
+	border-radius: 0 !important;
 }
 
 .try-again-link{

@@ -8,7 +8,4 @@
 #= require posts
 #= require projects
 #= require sessions
-#= require static_pages
 #= require users
-#= require battleship
-#= require battleship_video

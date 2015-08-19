@@ -1,0 +1,1 @@
+Rails.application.config.assets.precompile += ['fine.js', 'work_with_opal.js', 'battleship.js']
