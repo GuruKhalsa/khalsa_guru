@@ -31,7 +31,11 @@ class PostsController < ApplicationController
 	end
 
 	def show
+		# @post = Post.where("active = ? AND id = ?", true, params[:id]).first
 		@post = Post.find(params[:id])
+		if !@post.active
+			redirect_to root_url
+		end
 	end
 
 	def destroy
@@ -42,7 +46,7 @@ class PostsController < ApplicationController
 	private
 
 	def post_params
-		params.require(:post).permit(:title, :content, :user_id, :image)
+		params.require(:post).permit(:title, :content, :user_id, :image, :active)
 	end
 
 

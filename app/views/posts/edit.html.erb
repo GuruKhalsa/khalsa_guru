@@ -16,6 +16,8 @@
             <%= f.text_field :title, placeholder: "Title", class: "form-control" %><br/>
             <%= f.text_area :content, placeholder: "Post", class: "form-control" %>
             <%= f.file_field :image %><br/>
+
+            <%= f.check_box :active %> <%= f.label 'Active'%><br/>
           
             <%= f.submit "Update Post", class: "btn btn-large btn-primary"%></div>
         <% end %>
