@@ -45,6 +45,10 @@
 	-o-animation: glow 800ms ease-out infinite alternate;
 	-ms-animation: glow 800ms ease-out infinite alternate;
 	animation: glow 800ms ease-out infinite alternate;
+
+	&:hover{
+		background: white;
+	}
 }
 
 @-webkit-keyframes glow {

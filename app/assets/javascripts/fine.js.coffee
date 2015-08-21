@@ -102,18 +102,18 @@ $ ->
 
 		
 		
-		changeLine(220, "\|  Check out some of   \|", "\|  And try to beat me  \|")
+		changeLine(220, "\|  Check out some of   \|", "\|     And play me      \|")
 		changeLine(220, "\|  his projects below  \|", "\|     at a game of     \|")
 		changeLine(220, "\|  to see more of his  \|", "\|   HTML5 Battleship   \|_____")
-		changeLine(220, "\\   work in action   /", "\\    he created...   _/   Φ \\_")
+		changeLine(220, "\\   work in action   /", "\\     he created.    _/   Φ \\_")
 		changeLine(220, "_ =( °w° )=", "  =( °w° )=")
 		changeLine(220, "(_)==)   (", "     )   (")
 		changeLine(220, ">   /\\_/\\", "> ---------")
 
-		changeLine(250, "\|  And try to beat me  \|", "\|                      \|")
-		changeLine(250, "\|     at a game of     \|", "\|   to see a special   \|")
-		changeLine(250, "\|   HTML5 Battleship   \|", "\|       message!       \|")
-		changeLine(250, "\\    he created...   _/", "\\                    _/")
+		changeLine(250, "\|     And play me      \|", "\|   If you can beat    \|")
+		changeLine(250, "\|     at a game of     \|", "\|    me, I'll show     \|")
+		changeLine(250, "\|   HTML5 Battleship   \|", "\|    you a special     \|")
+		changeLine(250, "\\     he created.    _/", "\\      message!      _/")
 
 
 		setTimeout ->

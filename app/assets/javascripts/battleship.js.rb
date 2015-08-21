@@ -736,6 +736,7 @@ Document.ready? do
 									opal_header.text = " ______________________\n|                      |\n|    Guru wants to     |\n|   work with giants   |    _   _\n|                       \\  ((---))\n ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ =( °w° )=\n                        ( °))   (  //\n                           (__ __)//"
 									opal_header.class_name = 'battleship-win-fine'
 									opal_header.append_to(container)
+									# container.append("<a href='https://www.wearefine.com/careers/full-stack-web-developer'>reference</a>")
 								end
 								# Element.find('#battleship-container').after('<h1>You Lose</h1>')
 								Element.find('.try-again-link').show

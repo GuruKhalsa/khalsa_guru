@@ -10,7 +10,7 @@
 	</div>
 </div>
 <div id='game-complete-container'>
-	<%= link_to "Play Again", url_for(params), :class => 'btn btn-default try-again-link' %>
+	<%= link_to "Play Again", url_for(params), :class => 'btn btn-default try-again-link', :data => {:'no-turbolink' => true} %>
 </div>
 <script type='text/javascript'>
 	$(document).ready( function() {
