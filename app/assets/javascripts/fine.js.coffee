@@ -92,22 +92,21 @@ $ ->
 		changeLine(155, "\|  hardworking, loves  \|", "\|   And he likes to    \|")
 		changeLine(155, "\|  to code and explore \|", "\|   play ping pong     \|")
 		changeLine(155, "\\  new technologies  /", "\\                    /")
-		changeLine(155, "  =( °w° )=", "_ =( °w° )=")
+		changeLine(155, "|||__/                  =(", "|||__/                _ =(")
 		changeLine(155, "     )   (", "(_)==)   (")
 
 		changeLine(195, "\|                      \|", "\|  Check out some of   \|")
 		changeLine(195, "\|   And he likes to    \|", "\|  his projects below  \|")
 		changeLine(195, "\|   play ping pong     \|", "\|  to see more of his  \|")
 		changeLine(195, "\\                    /", "\\   work in action   /")
-
+		changeLine(195, "|||__/                _ =(", "|||__/                  =(")
+		changeLine(195, "(_)==)   (", "     )   (")
 		
 		
 		changeLine(220, "\|  Check out some of   \|", "\|     And play me      \|")
 		changeLine(220, "\|  his projects below  \|", "\|     at a game of     \|")
 		changeLine(220, "\|  to see more of his  \|", "\|   HTML5 Battleship   \|_____")
 		changeLine(220, "\\   work in action   /", "\\     he created.    _/   Φ \\_")
-		changeLine(220, "_ =( °w° )=", "  =( °w° )=")
-		changeLine(220, "(_)==)   (", "     )   (")
 		changeLine(220, ">   /\\_/\\", "> ---------")
 
 		changeLine(250, "\|     And play me      \|", "\|   If you can beat    \|")
