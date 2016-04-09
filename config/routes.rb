@@ -1,5 +1,7 @@
-KhalsaGuru::Application.routes.draw do
+require 'sidekiq/web'
 
+KhalsaGuru::Application.routes.draw do
+  mount Sidekiq::Web => "/sidekiq"
   resources :calagators
 
   # The priority is based upon order of creation: first created -> highest priority.

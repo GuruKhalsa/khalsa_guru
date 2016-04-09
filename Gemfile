@@ -7,6 +7,12 @@ gem 'mysql2'
 gem 'google-api-client'
 gem 'opal-rails'
 gem 'jquery-turbolinks'
+gem 'figaro'
+gem 'sms-easy'
+gem 'sinatra', :require => nil
+gem 'sidekiq'
+gem 'sidekiq-client-cli'
+gem 'whenever', :require => false
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
